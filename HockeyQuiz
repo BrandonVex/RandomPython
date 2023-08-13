@@ -1,0 +1,57 @@
+# Python quiz game
+
+questions = ("What NHL team won the stanley cup in 2023?",
+             "What player scored the fastest hattrick?",
+             "Who was the tallest player to ever play on the Boston Bruins?",
+             "What is the name of equipment located on their elbow?",
+             "Which team lost 3 stanley cups in a row?")
+
+options = (("A. Colorado Avalanche", "B. Vegas Golden Knights", "C. Washington Capitals", "D. Florida Panthers"),
+           ("A. Bill mosienko", "B. Alexander Ovechkin", "C. Wayne Gretzky", "D. Scott Neidermyer"),
+           ("A. Patrick Roy", "B. Zdeno Chara", "C. David Pastanak", "D. Bobby Orr"),
+           ("A. Shoulder Blade", "B. Shoulder Pad", "C. Shoulder Protector", "D. Arm Sleeve"),
+           ("A. Detroit Redwings", "B. Chicago Blackhawks", "C. Arizona Coyotes", "D. Toronto Maple Leafs"))
+
+answers = ("B", "A", "B", "B", "D")
+guesses = []
+score = 0
+question_num = 0
+
+for question in questions:
+    print("-----------------------")
+    print(question)
+    for option in options[question_num]:
+        print(option)
+
+    while True:
+        guess = input("Enter (A, B, C, D): ").upper()
+        if guess in ("A", "B", "C", "D"):
+            break
+        else:
+            print("Invalid input. Please enter A, B, C, or D.")
+
+    guesses.append(guess)
+    if guess == answers[question_num]:
+        score += 1
+        print("Correct!")
+    else:
+        print("Incorrect!")
+        print(f"{answers[question_num]} is the correct answer.")
+    question_num += 1
+
+print("----------------------")
+print("     Quiz Complete!   ")
+print("----------------------")
+
+print("answers: ", end="")
+for answer in answers: 
+    print(answer, end=" ")
+print()
+
+print("guesses: ", end="")
+for guess in guesses: 
+    print(guess, end=" ")
+print()
+
+score = int(score / len(questions) * 100)
+print(f"Your score is {score}%")
