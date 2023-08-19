@@ -1,0 +1,46 @@
+import calendar
+
+def display_calendar(year, month, events):
+    cal = calendar.month(year, month)
+    print(f"Calendar for {calendar.month_name[month]} {year}:\n")
+    print(cal)
+
+    for day, event in events.items():
+        print(f"{calendar.month_name[month]} {day}: {event}")
+
+def add_event(events):
+    try:
+        day = int(input("Enter the day: "))
+        if 1 <= day <= 31:
+            event = input("Enter the event: ")
+            events[day] = event
+        else:
+            print("Invalid day. Please enter a value between 1 and 31.")
+    except ValueError:
+        print("Invalid input. Please enter valid numeric values.")
+
+if __name__ == "__main__":
+    events = {}
+    
+    try:
+        year = int(input("Enter the year: "))
+        month = int(input("Enter the month (1-12): "))
+        
+        if 1 <= month <= 12:
+            while True:
+                display_calendar(year, month, events)
+                print("\nOptions:")
+                print("1. Add event")
+                print("2. Quit")
+                choice = input("Select an option: ")
+                
+                if choice == "1":
+                    add_event(events)
+                elif choice == "2":
+                    break
+                else:
+                    print("Invalid choice. Please select a valid option.")
+        else:
+            print("Invalid month. Please enter a value between 1 and 12.")
+    except ValueError:
+        print("Invalid input. Please enter valid numeric values.")
